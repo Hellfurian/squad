@@ -22,4 +22,5 @@ public class WebSocketRepository {
     public List<WebSocketSession> findAll () {
         return SESSIONS.values().stream().toList();
     }
+
 }

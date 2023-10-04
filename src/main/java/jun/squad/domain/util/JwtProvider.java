@@ -1,4 +1,4 @@
-package jun.squad.domain;
+package jun.squad.domain.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;

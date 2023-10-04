@@ -6,8 +6,12 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class RequestCreatePost {
+    
+    //토큰이 있으면 토큰으로 처리
+    private String token;
+
+    //토큰이 없으면 nickname 으로 처리
     private String nickname;
-    private String tag;
 
     private String map;
     private String server;

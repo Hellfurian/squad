@@ -5,6 +5,7 @@ import jun.squad.domain.dto.discord.ResponseAccessToken;
 import jun.squad.domain.dto.discord.ResponseDiscordProfile;
 import jun.squad.domain.entity.User;
 import jun.squad.domain.repository.UserRepository;
+import jun.squad.domain.util.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
