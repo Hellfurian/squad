@@ -1,4 +1,4 @@
-package jun.squad.domain;
+package jun.squad.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

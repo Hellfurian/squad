@@ -1,9 +1,9 @@
 
 spring:
   datasource:
-    url: jdbc:mysql://192.168.55.10:3306/guheayo?serverTimezone=UTC&characterEncoding=UTF-8
-    username: orbit
-    password: '!orbit1234@'
+    url: jdbc:mysql://localhost:3306/squad?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: 'rnjsxkr534'
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -19,3 +19,8 @@ spring:
 
 jwt:
   secret: helloworld4522!@#$
+
+discord:
+  id: 1159029609552171049
+  secret: iC2Tju-1xkBXuSwqzbbZDsr5OG3MpMoL
+  redirect: http://localhost:3000/discord

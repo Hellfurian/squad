@@ -13,11 +13,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String uuid;
 
     private String nickname;
     private String tag;
     private String email;
     private String avatar_url;
+
+    public User(String uuid, String nickname, String tag, String email, String avatar_url) {
+        this.uuid = uuid;
+        this.nickname = nickname;
+        this.tag = tag;
+        this.email = email;
+        this.avatar_url = avatar_url;
+    }
 }
