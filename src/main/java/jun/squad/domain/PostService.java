@@ -7,6 +7,7 @@ import jun.squad.domain.dto.socket.PacketType;
 import jun.squad.domain.entity.Post;
 import jun.squad.domain.entity.User;
 import jun.squad.domain.repository.PostRepository;
+import jun.squad.domain.repository.PostSearchCond;
 import jun.squad.domain.util.JwtProvider;
 import jun.squad.domain.util.TimeUtil;
 import jun.squad.ws.WebSocketService;
@@ -53,16 +54,15 @@ public class PostService {
             verify = true;
         }
 
-        postRepository.save(post);
-
+        Post save = postRepository.save(post);
         LocalDateTime now = LocalDateTime.now();
         Date date = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
         webSocketService.sendAllNewPost(new Packet<ResponsePost>(PacketType.UPDATE, new ResponsePost(avatarUrl, nickname, null, dto.getMap(), dto.getServer(), dto.getMemo(), TimeUtil.txtDate(date), verify)));
     }
 
     @Transactional(readOnly = true)
-    public Page<ResponsePost> getAll (Pageable pageable) {
-        Page<Post> results = postRepository.findAll(pageable);
+    public Page<ResponsePost> getAll (Pageable pageable, PostSearchCond cond) {
+        Page<Post> results = postRepository.getPostDynamic(pageable, cond);
         List<ResponsePost> posts = results.getContent().stream().map(p -> {
             String avatarUrl = p.getWriter() != null ?
                     "https://cdn.discordapp.com/avatars/" + p.getWriter().getUuid() + "/" + p.getWriter().getAvatar_url()
