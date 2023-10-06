@@ -1,6 +1,6 @@
 package jun.squad.domain.dto;
 
-import lombok.AccessLevel;
+import lombok. AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,25 +12,25 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RequestCreatePost {
     
-    //토큰이 있으면 토큰으로 처리
-    private String token;
+     //If there is a token, process it as a token
+     private String token;
 
-    //토큰이 없으면 nickname 으로 처리
-    private String nickname;
+     //If there is no token, it is treated as nickname
+     private String nickname;
 
-    private String map;
-    private String server;
-    private String type;
+     private String map;
+     private String server;
+     private String type;
 
-    private String memo;
+     private String memo;
 
 
-    public RequestCreatePost (String token, String nickname, String map, String server, String memo, String type) {
-        this.token = token;
-        this.nickname = nickname;
-        this.map = map;
-        this.server = server;
-        this.memo = memo;
-        this.type = type;
-    }
+     public RequestCreatePost (String token, String nickname, String map, String server, String memo, String type) {
+         this.token = token;
+         this.nickname = nickname;
+         this.map = map;
+         this.server = server;
+         this.memo = memo;
+         this.type = type;
+     }
 }
