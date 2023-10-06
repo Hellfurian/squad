@@ -42,13 +42,13 @@ public class PostService {
         Post post;
 
         if (uuid == null) {
-            post = new Post(dto.getNickname(), dto.getMap(), dto.getServer(), dto.getMemo());
+            post = new Post(dto.getNickname(), dto.getMap(), dto.getServer(), dto.getMemo(), dto.getType());
             nickname = dto.getNickname();
             avatarUrl = "https://mblogthumb-phinf.pstatic.net/MjAxODExMDZfMjk1/MDAxNTQxNDgzMjQ2Njkx.nfpggc9vN0l5-p8vjtc9ddl9JZXnqDZseeiBxSEIzeMg.Dv8HMLHaYQNVqobLTNJZ-GgcsF0uylmECBzzBN1ZfJgg.JPEG.kidarinusu/1541483245673.jpg?type=w800";
         }
         else {
             User findUser = userService.get(uuid);
-            post = new Post(findUser, dto.getMap(), dto.getServer(), dto.getMemo());
+            post = new Post(findUser, dto.getMap(), dto.getServer(), dto.getMemo(), dto.getType());
             nickname = findUser.getNickname();
             avatarUrl = "https://cdn.discordapp.com/avatars/" + findUser.getUuid() + "/" + findUser.getAvatar_url();
             verify = true;
@@ -57,7 +57,8 @@ public class PostService {
         Post save = postRepository.save(post);
         LocalDateTime now = LocalDateTime.now();
         Date date = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
-        webSocketService.sendAllNewPost(new Packet<ResponsePost>(PacketType.UPDATE, new ResponsePost(avatarUrl, nickname, null, dto.getMap(), dto.getServer(), dto.getMemo(), TimeUtil.txtDate(date), verify)));
+        webSocketService.sendAllNewPost(new Packet<ResponsePost>(PacketType.UPDATE,
+                new ResponsePost(avatarUrl, nickname, null, dto.getMap(), dto.getServer(), dto.getType(), dto.getMemo(), TimeUtil.txtDate(date), verify)));
     }
 
     @Transactional(readOnly = true)
@@ -71,7 +72,7 @@ public class PostService {
             boolean verify = p.getWriter() != null;
 
             Date date = Date.from(p.getCreated().atZone(ZoneId.systemDefault()).toInstant());
-            return new ResponsePost(avatarUrl, nickname, null, p.getMap(), p.getServer(), p.getMemo(), TimeUtil.txtDate(date), verify);
+            return new ResponsePost(avatarUrl, nickname, null, p.getMap(), p.getServer(), p.getType(), p.getMemo(), TimeUtil.txtDate(date), verify);
         }).toList();
 
         return new PageImpl<>(posts, pageable, results.getTotalElements());

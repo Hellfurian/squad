@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 public class PostSearchCond {
     private String map;
     private String server;
+    private String type;
 }

@@ -4,7 +4,6 @@ import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jun.squad.domain.entity.Post;
-import jun.squad.domain.entity.QPost;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -22,7 +21,7 @@ public class PostRepositoryImpl implements PostRepositoryDsl {
     @Override
     public Page<Post> getPostDynamic (Pageable pageable, PostSearchCond cond) {
         QueryResults<Post> results = query.selectFrom(post)
-                .where(mapEq(cond), serverEq(cond))
+                .where(mapEq(cond), serverEq(cond), typeEq(cond))
                 .orderBy(post.created.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -43,5 +42,12 @@ public class PostRepositoryImpl implements PostRepositoryDsl {
             return null;
         }
         return cond.getServer() != null ? post.server.eq(cond.getServer()) : null;
+    }
+
+    private BooleanExpression typeEq (PostSearchCond cond) {
+        if (cond == null) {
+            return null;
+        }
+        return cond.getType() != null ? post.type.eq(cond.getType()) : null;
     }
 }

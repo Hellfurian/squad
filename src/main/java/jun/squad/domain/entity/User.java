@@ -20,7 +20,7 @@ public class User {
     private String email;
     private String avatar_url;
 
-    public User(String uuid, String nickname, String tag, String email, String avatar_url) {
+    public User (String uuid, String nickname, String tag, String email, String avatar_url) {
         this.uuid = uuid;
         this.nickname = nickname;
         this.tag = tag;

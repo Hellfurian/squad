@@ -20,15 +20,17 @@ public class RequestCreatePost {
 
     private String map;
     private String server;
+    private String type;
 
     private String memo;
 
 
-    public RequestCreatePost (String token, String nickname, String map, String server, String memo) {
+    public RequestCreatePost (String token, String nickname, String map, String server, String memo, String type) {
         this.token = token;
         this.nickname = nickname;
         this.map = map;
         this.server = server;
         this.memo = memo;
+        this.type = type;
     }
 }

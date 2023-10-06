@@ -21,7 +21,7 @@ public class Post {
     private Long id;
 
     @JoinColumn(name = "writer")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User writer;
 
     @Column(name = "anonymous_writer")
@@ -30,21 +30,24 @@ public class Post {
     private String map;
     private String server;
     private String memo;
+    private String type;
 
     @CreatedDate
     private LocalDateTime created;
 
-    public Post (String anonymous, String map, String server, String memo) {
+    public Post (String anonymous, String map, String server, String memo, String type) {
         this.anonymous = anonymous;
         this.map = map;
         this.server = server;
         this.memo = memo;
+        this.type = type;
     }
 
-    public Post (User writer, String map, String server, String memo) {
+    public Post (User writer, String map, String server, String memo, String type) {
         this.writer = writer;
         this.map = map;
         this.server = server;
         this.memo = memo;
+        this.type = type;
     }
 }

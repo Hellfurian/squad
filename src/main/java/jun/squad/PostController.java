@@ -28,7 +28,8 @@ public class PostController {
     @GetMapping
     public Page<ResponsePost> getAll (@PageableDefault(size = 100) Pageable pageable,
                                       @RequestParam(required = false) String map,
-                                      @RequestParam(required = false) String server) {
-        return postService.getAll(pageable, new PostSearchCond(map, server));
+                                      @RequestParam(required = false) String server,
+                                      @RequestParam(required = false) String type) {
+        return postService.getAll(pageable, new PostSearchCond(map, server, type));
     }
 }
